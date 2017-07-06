@@ -94,8 +94,6 @@ def minimax(board_state, depth, player, alpha, beta, maximizing_player):
 
 # use minimax to find best move and update board
 def computer_turn(board_state, comp_player):
-    game_print(board_state)
-    print("Player " + str(comp_player + 1) + "s Turn")
     best = -1
     alpha = -1
     beta = 1
@@ -118,8 +116,6 @@ def computer_turn(board_state, comp_player):
 # take user input and update board accordingly
 def human_turn(board_state, player):
     while True:
-        game_print(board_state)
-        print("Player " + str(player + 1) + "s Turn")
         input_temp = input("Location to play (1-9)\n")
         if input_temp.isnumeric():
             if 1 <= int(input_temp) <= 9:
@@ -179,8 +175,12 @@ if __name__ == "__main__":
         # during game
         while True:
             if turn % 2 == player:
+                game_print(state)
+                print("Player " + str(player + 1) + "s Turn")
                 state = human_turn(state, player)
             else:
+                game_print(state)
+                print("Player " + str((not player) + 1) + "s Turn")
                 state = computer_turn(state, not player)
 
             # check for game over
